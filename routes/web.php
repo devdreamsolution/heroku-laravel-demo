@@ -17,4 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/products', 'PageController@index');
+Route::get('/products', 'App\Http\Controllers\PageController@index');
