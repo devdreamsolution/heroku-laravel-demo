@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Str;
-$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-$host = $url["host"] ?? null;
-$username = $url["user"] ?? null;
-$password = $url["pass"] ?? null;
-$database = substr($url["path"], 1);
+$url = 'postgres://fzsifhbhdybmys:e5a5d9970157a8489c53515acf1407b06e94f26601cc842b2bccd5e0244f9e6d@ec2-52-203-165-126.compute-1.amazonaws.com:5432/d1kkhh7jj1n8m4';
+$host = 'ec2-52-203-165-126.compute-1.amazonaws.com';
+$username = 'fzsifhbhdybmys';
+$port = 5432;
+$password = 'e5a5d9970157a8489c53515acf1407b06e94f26601cc842b2bccd5e0244f9e6d';
+$database = 'd1kkhh7jj1n8m4';
 
 return [
 
@@ -51,11 +52,11 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => $host,
+            'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
-            'database' => $database,
-            'username' => $username,
-            'password' => $password,
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
@@ -70,12 +71,12 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'url' => $url,
+            'host' => $host,
+            'port' => $port,
+            'database' => $database,
+            'username' => $username,
+            'password' => $password,
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
