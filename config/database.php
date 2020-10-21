@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Str;
+
+$default = 'pgsql';
 $url = 'postgres://fzsifhbhdybmys:e5a5d9970157a8489c53515acf1407b06e94f26601cc842b2bccd5e0244f9e6d@ec2-52-203-165-126.compute-1.amazonaws.com:5432/d1kkhh7jj1n8m4';
 $host = 'ec2-52-203-165-126.compute-1.amazonaws.com';
 $username = 'fzsifhbhdybmys';
@@ -21,7 +23,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'pgsql'),
+    'default' => env('DB_CONNECTION', $default),
 
     /*
     |--------------------------------------------------------------------------
@@ -71,12 +73,12 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'url' => $url,
-            'host' => $host,
-            'port' => $port,
-            'database' => $database,
-            'username' => $username,
-            'password' => $password,
+            'url' => env('DATABASE_URL', $url),
+            'host' => env('DB_HOST', $host),
+            'port' => env('DB_PORT', $port),
+            'database' => env('DB_DATABASE', $database),
+            'username' => env('DB_USERNAME', $username),
+            'password' => env('DB_PASSWORD', $password),
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
